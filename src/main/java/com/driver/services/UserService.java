@@ -25,15 +25,23 @@ public class UserService {
     }
 
     public void deleteUser(int userId){
+        try {
 
-        userRepository3.deleteById(userId);
+
+            userRepository3.deleteById(userId);
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
     }
 
     public void updateUser(User user){
         int userId=user.getId();
 
+
         //Blog blog=blogRepository.findById(userId).get();
         User newUser=userRepository3.findById(userId).get();
+        if(newUser==null) return;
         if(user.getFirstName()!=null) newUser.setFirstName(user.getFirstName());
         if(user.getLastName()!=null) newUser.setLastName(user.getLastName());
         if(user.getUsername()!=null) newUser.setUsername(user.getUsername());
