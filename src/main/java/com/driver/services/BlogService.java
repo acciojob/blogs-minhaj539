@@ -38,9 +38,9 @@ public class BlogService {
         Blog blog=new Blog();
         blog.setTitle(title);
         blog.setContent(content);
-        List<Blog> blogList=user.getListOfBlogs();
+        List<Blog> blogList=user.getBlogList();
         blogList.add(blog);
-        user.setListOfBlogs(blogList);
+        user.setBlogList(blogList);
         blog.setUser(user);
         userRepository1.save(user);
 
@@ -63,9 +63,9 @@ public class BlogService {
 
       Blog newBlog=blogRepository1.findById(blogId).get();
       Image image=imageService1.createAndReturn(newBlog,description,dimensions);
-      List<Image> imageList=newBlog.getListOfImages();
+      List<Image> imageList=newBlog.getImageList();
       imageList.add(image);
-      newBlog.setListOfImages(imageList);
+      newBlog.setImageList(imageList);
       //blogRepository1.save(newBlog);
 
 
