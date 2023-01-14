@@ -45,8 +45,15 @@ public class UserService {
     public User findUserByUsername(String username)
     {
 
+        User user;
+       try {
 
-        return userRepository3.findByUsername(username);  // commented by me
-      //  return null;  //written by me
+           user=userRepository3.findByUsername(username);
+       }
+       catch (Exception e){
+          e.getMessage();
+          user=null; // commented by me
+       }
+       return user;  //written by me
     }
 }

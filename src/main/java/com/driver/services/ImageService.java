@@ -42,7 +42,13 @@ public class ImageService {
     }
 
     public Image findById(int id) {
-        Image image=imageRepository2.findById(id).get();
+        Image image;
+        try {
+            image = imageRepository2.findById(id).get();
+        }
+        catch (Exception e){
+            image=null;
+        }
       return image; //written by me
     }
 

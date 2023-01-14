@@ -54,14 +54,21 @@ public class BlogService {
     }
 
     public Blog findBlogById(int blogId){
-
-        return null; //written by me
+        Blog blog=null;
+        try {
+             blog = blogRepository1.findById(blogId).get();
+        }
+        catch (Exception e){
+           blog=null;
+        }
+        return blog; //written by me
         //find a blog
     }
 
     public void addImage(Integer blogId, String description, String dimensions){
 
-      Blog newBlog=blogRepository1.findById(blogId).get();
+      Blog newBlog=findBlogById(blogId);
+      if(newBlog==null) return;
       Image image=imageService1.createAndReturn(newBlog,description,dimensions);
       List<Image> imageList=newBlog.getImageList();
       imageList.add(image);
@@ -73,8 +80,12 @@ public class BlogService {
     }
 
     public void deleteBlog(int blogId){
-
-        blogRepository1.deleteById(blogId);
-        //delete blog and corresponding images
+        try {
+            blogRepository1.deleteById(blogId);
+            //delete blog and corresponding images
+        }
+        catch (Exception e){
+            e.getMessage();
+        }
     }
 }
