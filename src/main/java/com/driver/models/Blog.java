@@ -1,6 +1,9 @@
 package com.driver.models;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,6 +15,8 @@ public class Blog{
     private int id;
     private String title;
     private String content;
+    @CreationTimestamp
+    private Date pubDate;
 
 
     @OneToMany(mappedBy = "blog",cascade = CascadeType.ALL)
@@ -69,5 +74,13 @@ public class Blog{
 
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
+    }
+
+    public Date getPubDate() {
+        return pubDate;
+    }
+
+    public void setPubDate(Date pubDate) {
+        this.pubDate = pubDate;
     }
 }
