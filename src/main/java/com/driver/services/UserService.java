@@ -25,43 +25,16 @@ public class UserService {
     }
 
     public void deleteUser(int userId){
-        try {
-
-
             userRepository3.deleteById(userId);
-        }
-        catch (Exception e){
-            e.getMessage();
-        }
     }
 
     public void updateUser(User user){
-        int userId=user.getId();
-
-
-        //Blog blog=blogRepository.findById(userId).get();
-        User newUser=userRepository3.findById(userId).get();
-        if(newUser==null) return;
-        if(user.getFirstName()!=null) newUser.setFirstName(user.getFirstName());
-        if(user.getLastName()!=null) newUser.setLastName(user.getLastName());
-        if(user.getUsername()!=null) newUser.setUsername(user.getUsername());
-        if(user.getPassword()!=null) newUser.setPassword(user.getPassword());
-        //newUser.setListOfBlogs(user.());
-        userRepository3.save(newUser);
+        userRepository3.save(user);
     }
 
     public User findUserByUsername(String username)
     {
-
-        User user;
-       try {
-
-           user=userRepository3.findByUsername(username);
-       }
-       catch (Exception e){
-          e.getMessage();
-          user=null; // commented by me
-       }
+        User user=userRepository3.findByUsername(username);
        return user;  //written by me
     }
 }

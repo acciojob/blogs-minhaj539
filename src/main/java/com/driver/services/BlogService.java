@@ -38,6 +38,7 @@ public class BlogService {
         Blog blog=new Blog();
         blog.setTitle(title);
         blog.setContent(content);
+        blog.setPubDate(new Date());
         List<Blog> blogList=user.getBlogList();
         blogList.add(blog);
         user.setBlogList(blogList);
@@ -54,13 +55,9 @@ public class BlogService {
     }
 
     public Blog findBlogById(int blogId){
-        Blog blog=null;
-        try {
-             blog = blogRepository1.findById(blogId).get();
-        }
-        catch (Exception e){
-           blog=null;
-        }
+
+            Blog blog = blogRepository1.findById(blogId).get();
+
         return blog; //written by me
         //find a blog
     }

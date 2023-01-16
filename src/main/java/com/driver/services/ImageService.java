@@ -18,19 +18,28 @@ public class ImageService {
 
     public Image createAndReturn(Blog blog, String description, String dimensions){
         //create an image based on given parameters and add it to the imageList of given blog
+        /* public void createAndReturnBlog(Integer userId, String title, String content) {
+        User user=userRepository1.findById(userId).get();
+        Blog blog=new Blog();
+        blog.setTitle(title);
+        blog.setContent(content);
+        blog.setPubDate(new Date());
+        List<Blog> blogList=user.getBlogList();
+        blogList.add(blog);
+        user.setBlogList(blogList);
+        blog.setUser(user);
+        userRepository1.save(user);*/
 
+        Image image=new Image();
+        image.setDescription(description);
+        image.setDimensions(dimensions);
+        List<Image> imageList=blog.getImageList();
+        imageList.add(image);
+        blog.setImageList(imageList);
+        image.setBlog(blog);
+        blogRepository.save(blog);
+        return image;  //edited by me
 
-        int blog_id=blog.getId();
-        Blog currBlog=blogRepository.findById(blog_id).get();
-        Image newImage=new Image();
-        newImage.setDescription(description);
-        newImage.setDimensions(dimensions);
-        List<Image> listOfImages=currBlog.getImageList();
-        listOfImages.add(newImage);
-        currBlog.setImageList(listOfImages);
-        newImage.setBlog(currBlog);
-        blogRepository.save(currBlog);
-        return newImage;  //edited by me
     }
 
     public void deleteImage(Image image){
@@ -42,13 +51,7 @@ public class ImageService {
     }
 
     public Image findById(int id) {
-        Image image;
-        try {
-            image = imageRepository2.findById(id).get();
-        }
-        catch (Exception e){
-            image=null;
-        }
+        Image image = imageRepository2.findById(id).get();
       return image; //written by me
     }
 
@@ -57,10 +60,11 @@ public class ImageService {
         //In case the image is null, return 0
         int cnt=0;
 
-        int image_id=image.getId();
-        Image getImage= imageRepository2.findById(image_id).get();
-        String imgDimensions=getImage.getDimensions();
-       // String imgDimensions=image.getDimensions();
+      //  int image_id=image.getId();
+      //  Image getImage= imageRepository2.findById(image_id).get();
+       // String imgDimensions=getImage.getDimensions();
+
+        String imgDimensions=image.getDimensions();
         String row="",col="";
         int i=0;
         while(imgDimensions.charAt(i)!='X'){
