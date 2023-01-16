@@ -33,11 +33,7 @@ public class ImageService {
         Image image=new Image();
         image.setDescription(description);
         image.setDimensions(dimensions);
-        List<Image> imageList=blog.getImageList();
-        imageList.add(image);
-        blog.setImageList(imageList);
         image.setBlog(blog);
-        blogRepository.save(blog);
         return image;  //edited by me
 
     }
