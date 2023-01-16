@@ -78,12 +78,7 @@ public class BlogService {
     }
 
     public void deleteBlog(int blogId){
-        try {
             blogRepository1.deleteById(blogId);
             //delete blog and corresponding images
-        }
-        catch (Exception e){
-            e.getMessage();
-        }
     }
 }
