@@ -77,13 +77,13 @@ public class ImageService {
         while(screenDimensions.charAt(j)!='X'){
             j++;
         }
-        screenRow=screenDimensions.substring(0,j);
-        screenCol=screenDimensions.substring(j+1);
+        screenCol=screenDimensions.substring(0,j);
+        screenRow=screenDimensions.substring(j+1);
 
-        int scX=Integer.parseInt(screenRow);
-        int scY=Integer.parseInt(screenCol);
-        for(int y=0;y<=scX;y++){
-            for(int x=0;x<=scY;x++) {
+        int scY=Integer.parseInt(screenRow);
+        int scX=Integer.parseInt(screenCol);
+        for(int y=0;y<=scY;y++){
+            for(int x=0;x<=scX;x++) {
                 if((y + imgY <= scY)&&(x + imgX <= scX)) {
                     cnt++;
                     x=x+imgX-1;
