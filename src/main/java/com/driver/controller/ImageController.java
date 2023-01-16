@@ -24,7 +24,7 @@ public class ImageController {
     public ResponseEntity<Image> createAndReturn(@RequestBody Blog blog,
                                                  @RequestParam("description") String description,
                                                  @RequestParam("dimensions") String dimensions) {
-        blogService.addImage(blog.getId(),description,dimensions);
+        //blogService.addImage(blog.getId(),description,dimensions);
         Image image = imageService.createAndReturn(blog,description,dimensions);
 
         return new ResponseEntity<>(image, HttpStatus.CREATED);

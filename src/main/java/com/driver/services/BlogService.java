@@ -34,15 +34,18 @@ public class BlogService {
     }
 
     public void createAndReturnBlog(Integer userId, String title, String content) {
-        User user=userRepository1.findById(userId).get();
         Blog blog=new Blog();
+        User user=userRepository1.findById(userId).get();
+        blog.setUser(user);
         blog.setTitle(title);
         blog.setContent(content);
         blog.setPubDate(new Date());
+
+
         List<Blog> blogList=user.getBlogList();
         blogList.add(blog);
         user.setBlogList(blogList);
-        blog.setUser(user);
+
         userRepository1.save(user);
 
 
@@ -76,7 +79,6 @@ public class BlogService {
         userRepository1.save(user);*/
 
       Blog blog=blogRepository1.findById(blogId).get();
-      if(blog==null) return;
       Image image=new Image();
       image.setDimensions(dimensions);
       image.setDescription(description);
