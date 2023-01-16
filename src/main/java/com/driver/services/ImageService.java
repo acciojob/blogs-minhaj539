@@ -71,10 +71,10 @@ public class ImageService {
             i++;
         }
 
-        row=imgDimensions.substring(0,i);
-        col=imgDimensions.substring(i+1);
-        int imgX=Integer.parseInt(row);
-        int imgY=Integer.parseInt(col);
+        col=imgDimensions.substring(0,i);
+        row=imgDimensions.substring(i+1);
+        int imgY=Integer.parseInt(row);
+        int imgX=Integer.parseInt(col);
 
         String screenRow="",screenCol="";
         int j=0;
