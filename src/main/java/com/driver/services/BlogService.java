@@ -48,7 +48,21 @@ public class BlogService {
 
         userRepository1.save(user);
 
+       /*  Blog blog = new Blog();
+        User user = userRepository1.findById(userId).get();
+        blog.setUser(user);
+        blog.setTitle(title);
+        blog.setContent(content);
+        blog.setPubDate(new Date());
 
+
+        //Updating the userInformation and changing its blogs
+        List<Blog> currentBlogs = user.getBlogList();
+        currentBlogs.add(blog);
+        user.setBlogList(currentBlogs);
+
+        //Only calling the parent userRepository function as the child function will automatically be called by cascading
+        userRepository1.save(user);*/
         //create a blog at the current time
 
         //updating the blog details
@@ -67,26 +81,14 @@ public class BlogService {
 
     public void addImage(Integer blogId, String description, String dimensions){
 
-        /*User user=userRepository1.findById(userId).get();
-        Blog blog=new Blog();
-        blog.setTitle(title);
-        blog.setContent(content);
-        blog.setPubDate(new Date());
-        List<Blog> blogList=user.getBlogList();
-        blogList.add(blog);
-        user.setBlogList(blogList);
-        blog.setUser(user);
-        userRepository1.save(user);*/
-
-      Blog blog=blogRepository1.findById(blogId).get();
-      Image image=new Image();
-      image.setDimensions(dimensions);
-      image.setDescription(description);
-        List<Image> imageList=blog.getImageList();
+         Blog blog = blogRepository1.findById(blogId).get();
+        Image image = imageService1.createAndReturn(blog, description, dimensions);
+        List<Image> imageList = blog.getImageList();
         imageList.add(image);
         blog.setImageList(imageList);
-        image.setBlog(blog);
+
         blogRepository1.save(blog);
+
 
 
         //add an image to the blog after creating it

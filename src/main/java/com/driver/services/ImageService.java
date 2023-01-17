@@ -16,25 +16,13 @@ public class ImageService {
     @Autowired
     BlogRepository blogRepository;
 
-    public Image createAndReturn(Blog newblog, String description, String dimensions){//changed blog to newblog
-        //create an image based on given parameters and add it to the imageList of given blog
-         Blog blog=blogRepository.findById(newblog.getId()).get();
-        Image image=new Image();
-        image.setDimensions(dimensions);
+    public Image createAndReturn(Blog blog, String description, String dimensions){//changed blog to newblog
+        Image image = new Image();
         image.setDescription(description);
+        image.setDimensions(dimensions);
         image.setBlog(blog);
-        List<Image> imageList=blog.getImageList();
-        imageList.add(image);
-        blog.setImageList(imageList);
-        blogRepository.save(blog);
+        imageRepository2.save(image);
         return image;
-        /* Blog blog=userRepository1.findById(userId).get();
-
-        List<Image> imageList=blog.getImageList();
-        imageList.add(image);
-        blog.setImageList(imageList);
-        image.setblog(blog);
-        blogRepository1.save(blog);*/
     }
 
     public void deleteImage(Image image){
